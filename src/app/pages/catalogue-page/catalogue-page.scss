@@ -26,3 +26,11 @@
   background: var(--primary);
   color: white;
 }
+
+/* --- Champ de recherche au-dessus de la grille --- */
+.search {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1.5rem;
+}

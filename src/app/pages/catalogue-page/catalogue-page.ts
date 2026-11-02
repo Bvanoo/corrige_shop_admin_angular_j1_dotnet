@@ -1,5 +1,7 @@
 import { Component, computed, inject, linkedSignal, signal, WritableSignal } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
+import { combineLatest, debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { Product } from '../../models/product';
 import { ProductCard } from '../../components/product-card/product-card';
 import { PanierService } from '../../services/panier.service';
@@ -26,6 +28,26 @@ export class CataloguePage {
       .find(ct => ct.product.id === product.id)?.quantity ?? 0;
     return {...product, stock: product.stock - quantiteDansPanier};
   }))
+  // --- Recherche ---
+  // texte saisi dans le champ de recherche (mis à jour à chaque frappe)
+  searchText = signal('');
+
+  // signal -> observable, puis on attend 300ms sans frappe et on ignore les valeurs identiques
+  private searchTerm$ = toObservable(this.searchText).pipe(
+    debounceTime(300),
+    map(text => text.trim().toLowerCase()),
+    distinctUntilChanged(),
+  );
+
+  // on combine le terme de recherche avec les produits (le stock change avec le panier)
+  // puis on revient en signal avec toSignal() pour l'afficher dans la grille
+  filteredProducts = toSignal(
+    combineLatest([this.searchTerm$, toObservable(this.products)]).pipe(
+      map(([term, products]) => products.filter(p => p.name.toLowerCase().includes(term))),
+    ),
+    { initialValue: this.products() },
+  );
+
   cartCount = signal(0);
   categories = signal<string[]>(["Informatique", "Audio"])
 

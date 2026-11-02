@@ -12,8 +12,17 @@
   }
 </header>
 
+<input
+  #search
+  type="search"
+  class="search"
+  placeholder="Rechercher un produit..."
+  [value]="searchText()"
+  (input)="searchText.set(search.value)"
+/>
+
 <div class="wrapper">
-  @for (product of products(); track product.id) {
+  @for (product of filteredProducts(); track product.id) {
     @if (product.category === selected() || selected() === '') {
       <app-product-card [product]="product" (addToCart)="addToCart($event)" />
     }
