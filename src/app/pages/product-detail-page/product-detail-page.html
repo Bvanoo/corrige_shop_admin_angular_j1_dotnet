@@ -1,4 +1,4 @@
-@if (product(); as p) {
+@if (product.value(); as p) {
   <header class="page-header">
     <h2>{{ p.name | titlecase }}</h2>
   </header>
@@ -15,5 +15,8 @@
 
   @if (auth.isAdmin()) {
     <a [routerLink]="['/catalogue', p.id, 'edit']"> | Modifier</a>
+    | <button type="button" (click)="delete(p)">Supprimer</button>
   }
+} @else if (product.isLoading()) {
+  <p>Chargement du produit...</p>
 }

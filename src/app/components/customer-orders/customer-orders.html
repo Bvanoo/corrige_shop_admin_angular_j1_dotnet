@@ -1,0 +1,14 @@
+@if (orders.error()) {
+  <p class="error">
+    Impossible de charger les commandes.
+    <button type="button" (click)="orders.reload()">Réessayer</button>
+  </p>
+} @else {
+  <app-order-table
+    [orders]="orders.value()"
+    [page]="page()"
+    [totalPages]="totalPages()"
+    [loading]="orders.isLoading()"
+    (pageChange)="page.set($event)"
+  />
+}

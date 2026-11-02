@@ -1,24 +1,29 @@
-import { Service, signal } from '@angular/core';
-import { Product, PRODUCTS } from '../models/product';
+import { HttpClient } from '@angular/common/http';
+import { inject, Service } from '@angular/core';
+import { Observable } from 'rxjs';
+import { API_URL } from '../api';
+import { Product } from '../models/product';
 
 @Service()
-// Source de vérité des produits : PRODUCTS est en lecture seule, on en fait une copie modifiable
+// Écritures sur l'API avec HttpClient (la LECTURE du catalogue se fait avec httpResource() dans les pages).
+// HttpClient renvoie des Observables "froids" : rien n'est envoyé tant qu'on ne fait pas .subscribe()
 export class ProductService {
-  private _products = signal<Product[]>([...PRODUCTS]);
-  products = this._products.asReadonly();
+  private http = inject(HttpClient);
+  readonly url = `${API_URL}/products`;
 
-  getById(id: number): Product | undefined {
-    return this._products().find((p) => p.id === id);
+  getById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.url}/${id}`);
   }
 
-  add(data: Omit<Product, 'id'>): Product {
-    const nextId = Math.max(0, ...this._products().map((p) => p.id)) + 1;
-    const product: Product = { id: nextId, ...data };
-    this._products.update((list) => [...list, product]);
-    return product;
+  create(data: Omit<Product, 'id'>): Observable<Product> {
+    return this.http.post<Product>(this.url, data);
   }
 
-  update(id: number, data: Omit<Product, 'id'>): void {
-    this._products.update((list) => list.map((p) => (p.id === id ? { ...p, ...data } : p)));
+  update(id: number, data: Omit<Product, 'id'>): Observable<Product> {
+    return this.http.put<Product>(`${this.url}/${id}`, { id, ...data });
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 }

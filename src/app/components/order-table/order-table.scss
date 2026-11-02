@@ -1,0 +1,64 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 0.5rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* pendant le chargement d'une autre page, on grise l'ancienne */
+table.loading {
+  opacity: 0.5;
+}
+
+.num {
+  text-align: right;
+}
+
+.status {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: var(--border);
+}
+
+.status[data-status='livrée'] {
+  background: #d1fae5;
+  color: var(--success);
+}
+
+.status[data-status='expédiée'] {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.status[data-status='en attente'] {
+  background: #fef3c7;
+  color: var(--warning);
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}

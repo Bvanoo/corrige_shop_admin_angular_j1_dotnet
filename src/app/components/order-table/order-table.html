@@ -1,0 +1,40 @@
+<table [class.loading]="loading()">
+  <thead>
+    <tr>
+      <th>N°</th>
+      <th>Date</th>
+      <th>Statut</th>
+      <th class="num">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (order of orders(); track order.id) {
+      <tr>
+        <td>#{{ order.id }}</td>
+        <td>{{ order.date | date: 'dd/MM/yyyy' }}</td>
+        <td><span class="status" [attr.data-status]="order.status">{{ order.status }}</span></td>
+        <td class="num">{{ order.total | currency: 'EUR' }}</td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="4" class="empty">{{ loading() ? 'Chargement...' : 'Aucune commande.' }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+@if (totalPages() > 1) {
+  <nav class="pager" aria-label="Pagination des commandes">
+    <button type="button" [disabled]="page() <= 1 || loading()" (click)="pageChange.emit(page() - 1)">
+      ‹ Précédent
+    </button>
+    <span>Page {{ page() }} / {{ totalPages() }}</span>
+    <button
+      type="button"
+      [disabled]="page() >= totalPages() || loading()"
+      (click)="pageChange.emit(page() + 1)"
+    >
+      Suivant ›
+    </button>
+  </nav>
+}

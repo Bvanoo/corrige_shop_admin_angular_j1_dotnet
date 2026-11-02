@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, numberAttribute, untracked } from '@angular/core';
+import { Component, computed, effect, inject, input, numberAttribute } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { HasUnsavedChanges } from '../../guards/has-unsaved-change-guard';
@@ -34,20 +34,21 @@ export class ProductFormPage implements HasUnsavedChanges {
   constructor() {
     // Remplit le formulaire avec le produit à modifier.
     // reset(valeurs) remet aussi le formulaire à "pristine" (aucun changement)
-    effect(() => {
+    effect((onCleanup) => {
       const id = this.id();
       if (id === undefined) return;
 
-      const product = untracked(() => this.productService.getById(id));
-      if (product) {
+      // GET /products/:id avec HttpClient ; on se désabonne si l'id change avant la réponse
+      const sub = this.productService.getById(id).subscribe((product) =>
         this.form.reset({
           name: product.name,
           price: product.price,
           stock: product.stock,
           category: product.category,
           imageUrl: product.imageUrl,
-        });
-      }
+        })
+      );
+      onCleanup(() => sub.unsubscribe());
     });
   }
 
@@ -64,17 +65,15 @@ export class ProductFormPage implements HasUnsavedChanges {
 
     const value = this.form.getRawValue();
     const id = this.id();
-    let savedId: number;
 
-    if (id !== undefined) {
-      this.productService.update(id, value);
-      savedId = id;
-    } else {
-      savedId = this.productService.add(value).id;
-    }
+    // PUT /products/:id en modification, POST /products en création (l'API attribue l'id)
+    const request$ =
+      id !== undefined ? this.productService.update(id, value) : this.productService.create(value);
 
-    // sans ça, le guard canDeactivate nous demanderait confirmation en quittant la page
-    this.form.markAsPristine();
-    this.router.navigate(['/catalogue', savedId]);
+    request$.subscribe((saved) => {
+      // sans ça, le guard canDeactivate nous demanderait confirmation en quittant la page
+      this.form.markAsPristine();
+      this.router.navigate(['/catalogue', saved.id]);
+    });
   }
 }

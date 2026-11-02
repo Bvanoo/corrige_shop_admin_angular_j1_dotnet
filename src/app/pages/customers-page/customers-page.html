@@ -1,3 +1,25 @@
 <header class="page-header">
   <h2>Clients</h2>
 </header>
+
+@if (customers.isLoading()) {
+  <p class="empty-state">Chargement des clients...</p>
+} @else if (customers.error()) {
+  <p class="empty-state">
+    Impossible de charger les clients (l'API est-elle lancée ?)
+    <button type="button" (click)="customers.reload()">Réessayer</button>
+  </p>
+} @else {
+  <app-customer-table
+    [customers]="customers.value()"
+    [selectedId]="selectedId()"
+    (selectCustomer)="toggle($event)"
+  />
+
+  @if (selectedCustomer(); as customer) {
+    <section class="orders">
+      <h3>Commandes de {{ customer.firstName }} {{ customer.lastName }}</h3>
+      <app-customer-orders [customerId]="customer.id" />
+    </section>
+  }
+}

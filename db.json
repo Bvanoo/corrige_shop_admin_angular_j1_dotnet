@@ -1,0 +1,509 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Clavier mécanique",
+      "price": 89.99,
+      "stock": 2,
+      "category": "Informatique",
+      "imageUrl": "https://images.unsplash.com/photo-1756387462457-9afa97d2dbe8?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 2,
+      "name": "Souris sans fil",
+      "price": 29.99,
+      "stock": 30,
+      "category": "Informatique",
+      "imageUrl": "https://images.unsplash.com/photo-1585816517178-2398c69d12c6?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 4,
+      "name": "Pack clavier + souris sans fil",
+      "price": 119,
+      "stock": 8,
+      "category": "Informatique",
+      "imageUrl": "https://images.unsplash.com/photo-1664249574324-be8030d95ec0?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 5,
+      "name": "Écran 27\" Full HD",
+      "price": 179.99,
+      "stock": 5,
+      "category": "Informatique",
+      "imageUrl": "https://images.unsplash.com/photo-1641997076583-20f1fc66a900?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 6,
+      "name": "Écran incurvé 34\"",
+      "price": 399,
+      "stock": 3,
+      "category": "Informatique",
+      "imageUrl": "https://images.unsplash.com/photo-1666771410255-158c17cf8ff8?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 3,
+      "name": "Casque audio",
+      "price": 59.9,
+      "stock": 0,
+      "category": "Audio",
+      "imageUrl": "https://images.unsplash.com/photo-1590845947676-fa2576f401b2?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 7,
+      "name": "Enceinte Bluetooth portable",
+      "price": 49.99,
+      "stock": 15,
+      "category": "Audio",
+      "imageUrl": "https://images.unsplash.com/photo-1549400854-b4300f444934?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 8,
+      "name": "Enceinte connectée",
+      "price": 129,
+      "stock": 6,
+      "category": "Audio",
+      "imageUrl": "https://images.unsplash.com/photo-1752955471067-294a5de5bf48?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 9,
+      "name": "Écouteurs sans fil",
+      "price": 99,
+      "stock": 20,
+      "category": "Audio",
+      "imageUrl": "https://images.unsplash.com/photo-1525825691042-e14d9042fc70?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 10,
+      "name": "Micro USB podcast",
+      "price": 69.9,
+      "stock": 4,
+      "category": "Audio",
+      "imageUrl": "https://images.unsplash.com/photo-1636294155447-b1a63a5cb084?w=600&h=600&fit=crop&fm=jpg&q=80"
+    },
+    {
+      "id": 11,
+      "name": "Micro de studio",
+      "price": 149,
+      "stock": 1,
+      "category": "Audio",
+      "imageUrl": "https://images.unsplash.com/photo-1767474365536-ef81bfa24c8a?w=600&h=600&fit=crop&fm=jpg&q=80"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "firstName": "Alice",
+      "lastName": "Martin",
+      "email": "alice.martin@mail.be",
+      "city": "Bruxelles"
+    },
+    {
+      "id": 2,
+      "firstName": "Benoît",
+      "lastName": "Dubois",
+      "email": "benoit.dubois@mail.be",
+      "city": "Liège"
+    },
+    {
+      "id": 3,
+      "firstName": "Chloé",
+      "lastName": "Lambert",
+      "email": "chloe.lambert@mail.be",
+      "city": "Namur"
+    },
+    {
+      "id": 4,
+      "firstName": "David",
+      "lastName": "Peeters",
+      "email": "david.peeters@mail.be",
+      "city": "Charleroi"
+    },
+    {
+      "id": 5,
+      "firstName": "Emma",
+      "lastName": "Leroy",
+      "email": "emma.leroy@mail.be",
+      "city": "Mons"
+    },
+    {
+      "id": 6,
+      "firstName": "François",
+      "lastName": "Janssens",
+      "email": "francois.janssens@mail.be",
+      "city": "Bruxelles"
+    },
+    {
+      "id": 7,
+      "firstName": "Gaëlle",
+      "lastName": "Maes",
+      "email": "gaelle.maes@mail.be",
+      "city": "Wavre"
+    },
+    {
+      "id": 8,
+      "firstName": "Hugo",
+      "lastName": "Dupont",
+      "email": "hugo.dupont@mail.be",
+      "city": "Liège"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "date": "2025-12-31",
+      "total": 271.8,
+      "status": "livrée"
+    },
+    {
+      "id": 2,
+      "customerId": 1,
+      "date": "2026-03-19",
+      "total": 200.59,
+      "status": "en attente"
+    },
+    {
+      "id": 3,
+      "customerId": 1,
+      "date": "2026-10-19",
+      "total": 265.91,
+      "status": "expédiée"
+    },
+    {
+      "id": 4,
+      "customerId": 1,
+      "date": "2026-03-18",
+      "total": 71.4,
+      "status": "livrée"
+    },
+    {
+      "id": 5,
+      "customerId": 1,
+      "date": "2026-09-27",
+      "total": 236.97,
+      "status": "en attente"
+    },
+    {
+      "id": 6,
+      "customerId": 1,
+      "date": "2026-03-15",
+      "total": 110.37,
+      "status": "en attente"
+    },
+    {
+      "id": 7,
+      "customerId": 1,
+      "date": "2026-01-31",
+      "total": 407.54,
+      "status": "expédiée"
+    },
+    {
+      "id": 8,
+      "customerId": 1,
+      "date": "2026-09-10",
+      "total": 373.77,
+      "status": "en attente"
+    },
+    {
+      "id": 9,
+      "customerId": 1,
+      "date": "2026-06-10",
+      "total": 82.88,
+      "status": "livrée"
+    },
+    {
+      "id": 10,
+      "customerId": 1,
+      "date": "2026-05-19",
+      "total": 246.55,
+      "status": "expédiée"
+    },
+    {
+      "id": 11,
+      "customerId": 1,
+      "date": "2026-03-11",
+      "total": 25.91,
+      "status": "en attente"
+    },
+    {
+      "id": 12,
+      "customerId": 1,
+      "date": "2026-10-25",
+      "total": 459.41,
+      "status": "livrée"
+    },
+    {
+      "id": 13,
+      "customerId": 1,
+      "date": "2026-06-20",
+      "total": 389.24,
+      "status": "expédiée"
+    },
+    {
+      "id": 14,
+      "customerId": 1,
+      "date": "2026-04-13",
+      "total": 200.3,
+      "status": "en attente"
+    },
+    {
+      "id": 15,
+      "customerId": 2,
+      "date": "2026-04-15",
+      "total": 327.65,
+      "status": "expédiée"
+    },
+    {
+      "id": 16,
+      "customerId": 2,
+      "date": "2026-01-15",
+      "total": 273.76,
+      "status": "en attente"
+    },
+    {
+      "id": 17,
+      "customerId": 2,
+      "date": "2026-05-16",
+      "total": 178.05,
+      "status": "en attente"
+    },
+    {
+      "id": 18,
+      "customerId": 2,
+      "date": "2026-01-19",
+      "total": 493.53,
+      "status": "expédiée"
+    },
+    {
+      "id": 19,
+      "customerId": 2,
+      "date": "2026-01-26",
+      "total": 496.79,
+      "status": "expédiée"
+    },
+    {
+      "id": 20,
+      "customerId": 2,
+      "date": "2026-07-29",
+      "total": 109.64,
+      "status": "expédiée"
+    },
+    {
+      "id": 21,
+      "customerId": 2,
+      "date": "2026-10-25",
+      "total": 111.18,
+      "status": "livrée"
+    },
+    {
+      "id": 22,
+      "customerId": 3,
+      "date": "2026-04-29",
+      "total": 230.7,
+      "status": "livrée"
+    },
+    {
+      "id": 23,
+      "customerId": 3,
+      "date": "2026-02-22",
+      "total": 409.18,
+      "status": "livrée"
+    },
+    {
+      "id": 24,
+      "customerId": 3,
+      "date": "2026-01-29",
+      "total": 34.26,
+      "status": "en attente"
+    },
+    {
+      "id": 25,
+      "customerId": 5,
+      "date": "2026-07-10",
+      "total": 202.56,
+      "status": "en attente"
+    },
+    {
+      "id": 26,
+      "customerId": 5,
+      "date": "2026-06-01",
+      "total": 270.16,
+      "status": "en attente"
+    },
+    {
+      "id": 27,
+      "customerId": 5,
+      "date": "2026-10-22",
+      "total": 187.32,
+      "status": "livrée"
+    },
+    {
+      "id": 28,
+      "customerId": 5,
+      "date": "2026-03-20",
+      "total": 339.89,
+      "status": "livrée"
+    },
+    {
+      "id": 29,
+      "customerId": 5,
+      "date": "2026-05-19",
+      "total": 231.6,
+      "status": "livrée"
+    },
+    {
+      "id": 30,
+      "customerId": 5,
+      "date": "2026-05-20",
+      "total": 489.07,
+      "status": "en attente"
+    },
+    {
+      "id": 31,
+      "customerId": 5,
+      "date": "2026-08-26",
+      "total": 435.45,
+      "status": "livrée"
+    },
+    {
+      "id": 32,
+      "customerId": 5,
+      "date": "2026-06-16",
+      "total": 416.85,
+      "status": "expédiée"
+    },
+    {
+      "id": 33,
+      "customerId": 5,
+      "date": "2026-04-02",
+      "total": 184.85,
+      "status": "en attente"
+    },
+    {
+      "id": 34,
+      "customerId": 5,
+      "date": "2026-05-13",
+      "total": 292.05,
+      "status": "expédiée"
+    },
+    {
+      "id": 35,
+      "customerId": 5,
+      "date": "2026-01-18",
+      "total": 255.09,
+      "status": "expédiée"
+    },
+    {
+      "id": 36,
+      "customerId": 6,
+      "date": "2026-01-02",
+      "total": 356.5,
+      "status": "expédiée"
+    },
+    {
+      "id": 37,
+      "customerId": 6,
+      "date": "2026-05-14",
+      "total": 469.36,
+      "status": "en attente"
+    },
+    {
+      "id": 38,
+      "customerId": 6,
+      "date": "2026-05-08",
+      "total": 160.41,
+      "status": "expédiée"
+    },
+    {
+      "id": 39,
+      "customerId": 6,
+      "date": "2026-03-14",
+      "total": 195.52,
+      "status": "livrée"
+    },
+    {
+      "id": 40,
+      "customerId": 6,
+      "date": "2026-10-07",
+      "total": 28.55,
+      "status": "expédiée"
+    },
+    {
+      "id": 41,
+      "customerId": 7,
+      "date": "2026-09-03",
+      "total": 275.7,
+      "status": "en attente"
+    },
+    {
+      "id": 42,
+      "customerId": 7,
+      "date": "2026-04-30",
+      "total": 81.83,
+      "status": "livrée"
+    },
+    {
+      "id": 43,
+      "customerId": 8,
+      "date": "2026-04-27",
+      "total": 56.6,
+      "status": "expédiée"
+    },
+    {
+      "id": 44,
+      "customerId": 8,
+      "date": "2026-04-10",
+      "total": 141.73,
+      "status": "expédiée"
+    },
+    {
+      "id": 45,
+      "customerId": 8,
+      "date": "2026-04-04",
+      "total": 315.94,
+      "status": "en attente"
+    },
+    {
+      "id": 46,
+      "customerId": 8,
+      "date": "2026-03-26",
+      "total": 494.78,
+      "status": "en attente"
+    },
+    {
+      "id": 47,
+      "customerId": 8,
+      "date": "2026-07-17",
+      "total": 266.81,
+      "status": "livrée"
+    },
+    {
+      "id": 48,
+      "customerId": 8,
+      "date": "2026-02-07",
+      "total": 191.91,
+      "status": "en attente"
+    },
+    {
+      "id": 49,
+      "customerId": 8,
+      "date": "2026-03-30",
+      "total": 100.74,
+      "status": "livrée"
+    },
+    {
+      "id": 50,
+      "customerId": 8,
+      "date": "2026-08-05",
+      "total": 302.87,
+      "status": "expédiée"
+    },
+    {
+      "id": 51,
+      "customerId": 8,
+      "date": "2026-05-26",
+      "total": 195.68,
+      "status": "en attente"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { httpResource } from '@angular/common/http';
 import { Component, computed, inject, linkedSignal, signal, WritableSignal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
@@ -20,10 +21,14 @@ export class CataloguePage {
   productService = inject(ProductService)
   auth = inject(AuthService)
 
+  // httpResource() : GET /products géré par Angular, exposé sous forme de signaux
+  // value(), isLoading(), error(), reload()... La ressource est recréée à chaque visite de la page
+  productsResource = httpResource<Product[]>(() => this.productService.url, { defaultValue: [] });
+
   // le stock est recalculé à partir du panier du service => il survit au changement de page
   // stock affiché = stock de base - quantité déjà dans le panier
-  // les produits viennent maintenant du ProductService (modifiables) et plus de la constante PRODUCTS
-  products = computed<Product[]>(() => this.productService.products().map(product => {
+  // les produits viennent maintenant de l'API (httpResource) et plus de la constante PRODUCTS
+  products = computed<Product[]>(() => this.productsResource.value().map(product => {
     const quantiteDansPanier = this.panierService.cartItems()
       .find(ct => ct.product.id === product.id)?.quantity ?? 0;
     return {...product, stock: product.stock - quantiteDansPanier};

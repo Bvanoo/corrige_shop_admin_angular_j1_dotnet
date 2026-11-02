@@ -21,12 +21,21 @@
   (input)="searchText.set(search.value)"
 />
 
-<div class="wrapper">
-  @for (product of filteredProducts(); track product.id) {
-    @if (product.category === selected() || selected() === '') {
-      <app-product-card [product]="product" (addToCart)="addToCart($event)" />
+@if (productsResource.isLoading()) {
+  <p class="empty-state">Chargement du catalogue...</p>
+} @else if (productsResource.error()) {
+  <p class="empty-state">
+    Impossible de charger le catalogue (l'API est-elle lancée ?)
+    <button type="button" (click)="productsResource.reload()">Réessayer</button>
+  </p>
+} @else {
+  <div class="wrapper">
+    @for (product of filteredProducts(); track product.id) {
+      @if (product.category === selected() || selected() === '') {
+        <app-product-card [product]="product" (addToCart)="addToCart($event)" />
+      }
+    } @empty {
+      <p class="empty-state">Je n'ai pas de produit dans mon catalogue.</p>
     }
-  } @empty {
-    <p class="empty-state">Je n'ai pas de produit dans mon catalogue.</p>
-  }
-</div>
+  </div>
+}

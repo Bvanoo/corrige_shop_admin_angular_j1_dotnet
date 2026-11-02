@@ -1,0 +1,14 @@
+/* --- Sous-tableau : commandes du client sélectionné --- */
+.orders {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.orders h3 {
+  margin: 0 0 1rem;
+}

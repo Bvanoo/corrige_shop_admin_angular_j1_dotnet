@@ -1,6 +1,8 @@
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
-import { Component, computed, inject, input, numberAttribute } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { httpResource } from '@angular/common/http';
+import { Component, inject, input, numberAttribute } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { Product } from '../../models/product';
 import { StockLabelPipe } from '../../pipes/stock-label-pipe';
 import { AuthService } from '../../services/auth-service';
 import { ProductService } from '../../services/product-service';
@@ -17,6 +19,15 @@ export class ProductDetailPage {
 
   auth = inject(AuthService);
   private productService = inject(ProductService);
+  private router = inject(Router);
 
-  product = computed(() => this.productService.getById(this.id()));
+  // la fonction lit le signal id() => si l'id change, la requête est relancée automatiquement
+  product = httpResource<Product>(() => `${this.productService.url}/${this.id()}`);
+
+  delete(product: Product) {
+    if (!confirm(`Supprimer « ${product.name} » ?`)) return;
+
+    // l'erreur éventuelle est déjà loggée par l'intercepteur
+    this.productService.delete(product.id).subscribe(() => this.router.navigate(['/catalogue']));
+  }
 }
