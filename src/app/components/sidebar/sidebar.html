@@ -1,6 +1,14 @@
 <nav aria-label="Navigation principale">
   <p class="nav-title">Menu</p>
-  <a routerLink="/catalogue" routerLinkActive="active" ariaCurrentWhenActive="page">Catalogue</a>
+  <a routerLink="/catalogue" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" ariaCurrentWhenActive="page">Catalogue</a>
+  @if (auth.isAdmin()) {
+    <a routerLink="/catalogue/new" routerLinkActive="active" ariaCurrentWhenActive="page">Nouveau produit</a>
+  }
   <a routerLink="/panier" routerLinkActive="active" ariaCurrentWhenActive="page">Panier</a>
   <a routerLink="/clients" routerLinkActive="active" ariaCurrentWhenActive="page">Clients</a>
+
+  <p class="nav-title">Compte</p>
+  <button type="button" (click)="auth.toggleAdmin()">
+    Mode admin : {{ auth.isAdmin() ? 'ON' : 'OFF' }}
+  </button>
 </nav>

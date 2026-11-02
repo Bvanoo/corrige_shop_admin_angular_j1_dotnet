@@ -1,13 +1,13 @@
 import { Component, computed, inject, linkedSignal, signal, WritableSignal } from '@angular/core';
-import { Product, PRODUCTS } from '../../models/product';
+import { RouterLink } from '@angular/router';
+import { Product } from '../../models/product';
 import { ProductCard } from '../../components/product-card/product-card';
-import { cartItemModel } from '../../components/cart-items/cart-item.model';
-import { CartItems } from '../../components/cart-items/cart-items';
-import { CurrencyPipe } from '@angular/common';
 import { PanierService } from '../../services/panier.service';
+import { ProductService } from '../../services/product-service';
+import { AuthService } from '../../services/auth-service';
 @Component({
   selector: 'app-catalogue-page',
-  imports: [ProductCard],
+  imports: [ProductCard, RouterLink],
   templateUrl: './catalogue-page.html',
   styleUrl: './catalogue-page.scss',
 })
@@ -15,9 +15,13 @@ import { PanierService } from '../../services/panier.service';
 export class CataloguePage {
 
   panierService = inject(PanierService)
+  productService = inject(ProductService)
+  auth = inject(AuthService)
+
   // le stock est recalculé à partir du panier du service => il survit au changement de page
   // stock affiché = stock de base - quantité déjà dans le panier
-  products = computed<Product[]>(() => PRODUCTS.map(product => {
+  // les produits viennent maintenant du ProductService (modifiables) et plus de la constante PRODUCTS
+  products = computed<Product[]>(() => this.productService.products().map(product => {
     const quantiteDansPanier = this.panierService.cartItems()
       .find(ct => ct.product.id === product.id)?.quantity ?? 0;
     return {...product, stock: product.stock - quantiteDansPanier};

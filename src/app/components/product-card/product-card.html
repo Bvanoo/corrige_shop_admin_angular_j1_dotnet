@@ -6,7 +6,7 @@
     @case ("Audio") { <p class="badge">STYLER</p> }
   }
 
-  <h3>{{ product().name | titlecase }}</h3>
+  <h3><a [routerLink]="['/catalogue', product().id]">{{ product().name | titlecase }}</a></h3>
   <p class="category">{{ product().category }}</p>
   <p class="price">{{ product().price | currency: 'EUR' }}</p>
   <p class="stock">{{ product().stock | stockLabel }}</p>

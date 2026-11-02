@@ -6,6 +6,10 @@
     <button (click)="choisi('Audio')">Audio</button>
     <button (click)="choisi('Informatique')">Informatique</button>
   </h3>
+
+  @if (auth.isAdmin()) {
+    <a routerLink="/catalogue/new">+ Nouveau produit</a>
+  }
 </header>
 
 <div class="wrapper">
@@ -17,4 +21,3 @@
     <p class="empty-state">Je n'ai pas de produit dans mon catalogue.</p>
   }
 </div>
-

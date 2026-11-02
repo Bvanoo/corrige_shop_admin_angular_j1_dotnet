@@ -29,4 +29,8 @@
   <p>total HTVA : {{totalHTVA() | currency: 'EUR'}}</p>
   <p>TVA : {{TVA() | currency: 'EUR'}} </p>
   <p>total TTC : {{TotalTTC() | currency: 'EUR'}}</p>
+
+  <button type="button" (click)="valider()" [disabled]="cart().length === 0">
+    Valider la commande
+  </button>
 </article>

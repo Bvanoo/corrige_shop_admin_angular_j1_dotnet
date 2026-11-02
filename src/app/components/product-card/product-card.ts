@@ -1,4 +1,5 @@
 import { Component, input, output, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Product } from '../../models/product';
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { StockLabelPipe } from '../../pipes/stock-label-pipe';
@@ -14,7 +15,7 @@ addToCart = output<productLine>()
 */
 
 @Component({
-  imports: [CurrencyPipe, TitleCasePipe, StockLabelPipe, FormsModule, LowStock, QuantityPicker],
+  imports: [CurrencyPipe, TitleCasePipe, StockLabelPipe, FormsModule, LowStock, QuantityPicker, RouterLink],
   selector: 'app-product-card',
   styleUrl: './product-card.scss',
   templateUrl: './product-card.html',

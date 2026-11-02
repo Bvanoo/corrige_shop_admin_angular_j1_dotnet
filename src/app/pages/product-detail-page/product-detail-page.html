@@ -1,0 +1,19 @@
+@if (product(); as p) {
+  <header class="page-header">
+    <h2>{{ p.name | titlecase }}</h2>
+  </header>
+
+  <article>
+    <img [src]="p.imageUrl" [alt]="p.name" width="300" />
+    <p>Catégorie : {{ p.category }}</p>
+    <p>Prix : {{ p.price | currency: 'EUR' }}</p>
+    <p>Stock : {{ p.stock }} ({{ p.stock | stockLabel }})</p>
+  </article>
+  <br />
+
+  <a routerLink="/catalogue">Retour au catalogue</a>
+
+  @if (auth.isAdmin()) {
+    <a [routerLink]="['/catalogue', p.id, 'edit']"> | Modifier</a>
+  }
+}
